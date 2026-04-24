@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE LAYER
+   ═══════════════════════════════════════════════════════════════════════════ */
+@layer base {
+  :root {
+    color-scheme: light;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --glass-bg: rgba(24, 24, 27, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-50 dark:bg-surface-950 text-gray-900 dark:text-gray-100 font-sans;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary-200 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENT LAYER
+   ═══════════════════════════════════════════════════════════════════════════ */
+@layer components {
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 cursor-pointer select-none;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-md
+           hover:from-primary-700 hover:to-primary-600 hover:shadow-lg hover:shadow-primary-500/20
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary-600 to-secondary-500 text-white shadow-md
+           hover:from-secondary-700 hover:to-secondary-600 hover:shadow-lg hover:shadow-secondary-500/20
+           active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300
+           hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600
+           active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg hover:shadow-red-500/20
+           active:scale-[0.98];
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-lg;
+  }
+
+  .btn-lg {
+    @apply px-8 py-3.5 text-base rounded-xl;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white dark:bg-surface-900 rounded-2xl shadow-md p-6
+           border border-gray-100 dark:border-gray-800/60;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-xl hover:border-primary-200 dark:hover:border-primary-800/50
+           hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  .card-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    @apply rounded-2xl shadow-lg;
+  }
+
+  /* ── Inputs ──────────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 dark:border-gray-700
+           bg-white dark:bg-surface-900 text-gray-900 dark:text-gray-100
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:border-primary-500 dark:focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20
+           focus:outline-none transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2;
+  }
+
+  /* ── Badges ──────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300;
+  }
+
+  .badge-warning {
+    @apply badge bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300;
+  }
+
+  /* ── Tabs ─────────────────────────────────────────────────────────────── */
+  .tab-bar {
+    @apply flex gap-1 p-1 bg-gray-100 dark:bg-surface-900 rounded-xl;
+  }
+
+  .tab-item {
+    @apply flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium
+           text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer
+           hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800;
+  }
+
+  .tab-item-active {
+    @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm font-semibold;
+  }
+
+  /* ── Drop Zones ─────────────────────────────────────────────────────── */
+  .dropzone {
+    @apply border-2 border-dashed border-gray-300 dark:border-gray-700
+           rounded-2xl p-10 text-center cursor-pointer
+           transition-all duration-300
+           bg-gray-50/50 dark:bg-surface-900/50
+           flex flex-col items-center gap-4
+           hover:border-primary-400 dark:hover:border-primary-600
+           hover:bg-primary-50/50 dark:hover:bg-primary-950/20;
+  }
+
+  .dropzone.active {
+    @apply border-primary-500 bg-primary-50 dark:bg-primary-950/30
+           shadow-glow-sm dark:border-primary-400;
+  }
+
+  /* ── Alerts / Status ────────────────────────────────────────────────── */
+  .alert {
+    @apply p-4 rounded-xl text-sm flex items-start gap-3 animate-slide-down;
+  }
+
+  .alert-success {
+    @apply alert bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-200
+           border border-emerald-200 dark:border-emerald-800/50;
+  }
+
+  .alert-error {
+    @apply alert bg-red-50 dark:bg-red-950/30 text-red-800 dark:text-red-200
+           border border-red-200 dark:border-red-800/50;
+  }
+
+  .alert-info {
+    @apply alert bg-blue-50 dark:bg-blue-950/30 text-blue-800 dark:text-blue-200
+           border border-blue-200 dark:border-blue-800/50;
+  }
+
+  /* ── File Items ──────────────────────────────────────────────────────── */
+  .file-item {
+    @apply flex items-center gap-4 p-4 bg-white dark:bg-surface-900
+           rounded-xl border border-gray-100 dark:border-gray-800
+           transition-all duration-200;
+  }
+
+  .file-item:hover {
+    @apply shadow-md border-gray-200 dark:border-gray-700;
+  }
+
+  /* ── Section Headers ─────────────────────────────────────────────────── */
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 dark:text-gray-400 mt-2;
+  }
+
+  /* ── Progress ────────────────────────────────────────────────────────── */
+  .progress-track {
+    @apply w-full h-2.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500
+           rounded-full transition-all duration-500 ease-out;
+  }
+
+  .progress-shimmer {
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITY LAYER
+   ═══════════════════════════════════════════════════════════════════════════ */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600;
+  }
+
+  .bg-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .dark .bg-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #f3e8ff 60%, #faf5ff 100%);
+  }
+
+  .dark .bg-gradient-hero {
+    background: linear-gradient(135deg, #09090b 0%, #0c3d66 30%, #3b0764 60%, #09090b 100%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SPINNER
+   ═══════════════════════════════════════════════════════════════════════════ */
+.spinner {
+  @apply w-5 h-5 border-2 border-gray-300 dark:border-gray-600 border-t-primary-500 rounded-full animate-spin;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DRAG & DROP
+   ═══════════════════════════════════════════════════════════════════════════ */
+.draggable-item {
+  @apply transition-all duration-200;
+}
+
+.draggable-item.dragging {
+  @apply opacity-50 scale-[0.98];
+}
